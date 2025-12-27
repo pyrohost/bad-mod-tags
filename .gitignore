@@ -2,7 +2,7 @@
 node_modules/
 
 # Generated API files
-api/
+dist/
 
 # OS files
 .DS_Store

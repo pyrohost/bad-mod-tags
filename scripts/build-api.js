@@ -4,7 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 const DATA_FILE = path.join(__dirname, '..', 'data', 'mods.json');
-const API_DIR = path.join(__dirname, '..', 'api', 'v1');
+const DIST_DIR = path.join(__dirname, '..', 'dist');
+const API_DIR = path.join(DIST_DIR, 'api', 'v1');
 const MODRINTH_DIR = path.join(API_DIR, 'modrinth');
 const CURSEFORGE_DIR = path.join(API_DIR, 'curseforge');
 
