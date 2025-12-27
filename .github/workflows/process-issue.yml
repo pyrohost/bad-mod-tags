@@ -2,11 +2,20 @@ name: Process Mod Report
 
 on:
   issues:
-    types: [opened, edited, labeled]
+    types: [edited, labeled]
+
+# Prevent duplicate runs for the same issue
+concurrency:
+  group: process-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
 
 jobs:
   process:
     name: Process Mod Report
+    # Only run when:
+    # - labeled with 'mod-report' (initial processing)
+    # - or edited (user fixing validation errors)
+    # Skip if already processed (has pr-created) or waiting for info (has needs-info, unless editing)
     if: |
       (github.event.action != 'labeled' || github.event.label.name == 'mod-report') &&
       contains(github.event.issue.labels.*.name, 'mod-report') &&
@@ -26,6 +35,7 @@ jobs:
         id: parse
         uses: stefanbuck/github-issue-parser@v3
         with:
+          issue-body: ${{ github.event.issue.body }}
           template-path: .github/ISSUE_TEMPLATE/report-mod.yml
 
       - name: Setup Node.js
@@ -44,23 +54,31 @@ jobs:
       - name: Rename Issue
         if: steps.process.outputs.valid == 'true'
         uses: actions/github-script@v7
+        env:
+          MOD_NAME: ${{ steps.process.outputs.mod_name }}
         with:
           script: |
             await github.rest.issues.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              title: `[Report] ${{ steps.process.outputs.mod_name }}`
+              title: `[Report] ${process.env.MOD_NAME}`
             });
 
       - name: Create Pull Request
         if: steps.process.outputs.valid == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         id: create-pr
+        env:
+          MOD_NAME: ${{ steps.process.outputs.mod_name }}
+          MOD_SLUG: ${{ steps.process.outputs.mod_slug }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore: add ${{ steps.process.outputs.mod_name }}"
           branch: add-mod/${{ steps.process.outputs.mod_slug }}
+          base: main
           delete-branch: true
           title: "chore: add ${{ steps.process.outputs.mod_name }}"
           body: |
@@ -73,12 +91,24 @@ jobs:
           labels: |
             automated
 
+      - name: Find Existing Comment
+        if: always()
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '<!-- bad-mod-tags-bot -->'
+
       - name: Comment Success
         if: steps.process.outputs.valid == 'true' && steps.create-pr.outputs.pull-request-number
         uses: peter-evans/create-or-update-comment@v4
         with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.issue.number }}
+          edit-mode: replace
           body: |
+            <!-- bad-mod-tags-bot -->
             Pull request created: #${{ steps.create-pr.outputs.pull-request-number }}
 
             A maintainer will review and merge the PR.
@@ -89,8 +119,11 @@ jobs:
         env:
           ERROR_MESSAGE: ${{ steps.process.outputs.error }}
         with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.issue.number }}
+          edit-mode: replace
           body: |
+            <!-- bad-mod-tags-bot -->
             Could not process mod report:
 
             ```
@@ -102,9 +135,11 @@ jobs:
       - name: Update Labels
         if: always() && steps.process.outputs.valid != ''
         uses: actions/github-script@v7
+        env:
+          VALID: ${{ steps.process.outputs.valid }}
         with:
           script: |
-            const valid = '${{ steps.process.outputs.valid }}' === 'true';
+            const valid = process.env.VALID === 'true';
             const labels = valid ? ['pr-created'] : ['needs-info'];
             const removeLabels = valid ? ['needs-verification', 'needs-info'] : ['needs-verification'];
 
