@@ -2,7 +2,7 @@ name: Process Dispute
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, labeled]
 
 jobs:
   process:
