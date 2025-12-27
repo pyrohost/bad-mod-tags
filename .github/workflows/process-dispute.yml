@@ -7,7 +7,10 @@ on:
 jobs:
   process:
     name: Process Dispute
-    if: contains(github.event.issue.labels.*.name, 'dispute')
+    if: |
+      contains(github.event.issue.labels.*.name, 'dispute') &&
+      !contains(github.event.issue.labels.*.name, 'pr-created') &&
+      !contains(github.event.issue.labels.*.name, 'needs-info')
     runs-on: ubuntu-latest
     permissions:
       contents: write
