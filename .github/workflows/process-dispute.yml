@@ -36,6 +36,18 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: node scripts/process-dispute.js
 
+      - name: Rename Issue
+        if: steps.process.outputs.valid == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              title: `[Dispute] ${{ steps.process.outputs.mod_name }}`
+            });
+
       - name: Create Pull Request
         if: steps.process.outputs.valid == 'true'
         uses: peter-evans/create-pull-request@v6
