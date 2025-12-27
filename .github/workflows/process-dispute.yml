@@ -8,6 +8,7 @@ jobs:
   process:
     name: Process Dispute
     if: |
+      (github.event.action != 'labeled' || github.event.label.name == 'dispute') &&
       contains(github.event.issue.labels.*.name, 'dispute') &&
       !contains(github.event.issue.labels.*.name, 'pr-created') &&
       (github.event.action == 'edited' || !contains(github.event.issue.labels.*.name, 'needs-info'))
