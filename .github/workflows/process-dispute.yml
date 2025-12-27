@@ -57,10 +57,10 @@ jobs:
         id: create-pr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Remove ${{ steps.process.outputs.mod_name }}"
+          commit-message: "chore: remove ${{ steps.process.outputs.mod_name }}"
           branch: remove-mod/${{ steps.process.outputs.mod_slug }}
           delete-branch: true
-          title: "Remove ${{ steps.process.outputs.mod_name }}"
+          title: "chore: remove ${{ steps.process.outputs.mod_name }}"
           body: |
             Dispute from issue #${{ github.event.issue.number }}
 

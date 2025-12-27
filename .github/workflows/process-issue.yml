@@ -58,10 +58,10 @@ jobs:
         id: create-pr
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Add ${{ steps.process.outputs.mod_name }}"
+          commit-message: "chore: add ${{ steps.process.outputs.mod_name }}"
           branch: add-mod/${{ steps.process.outputs.mod_slug }}
           delete-branch: true
-          title: "Add ${{ steps.process.outputs.mod_name }}"
+          title: "chore: add ${{ steps.process.outputs.mod_name }}"
           body: |
             Automated PR from issue #${{ github.event.issue.number }}
 
