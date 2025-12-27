@@ -84,7 +84,7 @@ jobs:
             A maintainer will review the dispute.
 
       - name: Comment Failure
-        if: steps.process.outputs.valid == 'false'
+        if: always() && steps.process.outputs.valid == 'false'
         uses: peter-evans/create-or-update-comment@v4
         env:
           ERROR_MESSAGE: ${{ steps.process.outputs.error }}
@@ -100,22 +100,26 @@ jobs:
             Please check the mod name and IDs.
 
       - name: Update Labels
+        if: always() && steps.process.outputs.valid != ''
         uses: actions/github-script@v7
         with:
           script: |
             const valid = '${{ steps.process.outputs.valid }}' === 'true';
-            if (valid) {
-              await github.rest.issues.addLabels({
+            const labels = valid ? ['pr-created'] : ['needs-info'];
+            const removeLabels = valid ? ['needs-review', 'needs-info'] : ['needs-review'];
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels
+            });
+
+            for (const label of removeLabels) {
+              await github.rest.issues.removeLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                labels: ['pr-created']
-              });
-            } else {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                labels: ['needs-info']
-              });
+                name: label
+              }).catch(() => {});
             }

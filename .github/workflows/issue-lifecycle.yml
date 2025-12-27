@@ -38,15 +38,26 @@ jobs:
         with:
           script: |
             const issueNumber = parseInt('${{ steps.find-issue.outputs.issue_number }}');
+            const prLabels = context.payload.pull_request.labels.map(l => l.name);
+            const isDispute = prLabels.includes('removal');
+
+            const labelToAdd = isDispute ? 'removed' : 'added';
+            const message = isDispute
+              ? 'Merged. The mod has been removed from the database.'
+              : 'Merged. The mod has been added to the database.';
 
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
-              labels: ['added']
+              labels: [labelToAdd]
             });
 
-            for (const label of ['mod-report', 'needs-verification', 'pr-created', 'needs-info']) {
+            const labelsToRemove = [
+              'mod-report', 'needs-verification', 'pr-created', 'needs-info',
+              'dispute', 'needs-review'
+            ];
+            for (const label of labelsToRemove) {
               await github.rest.issues.removeLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -59,7 +70,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issueNumber,
-              body: 'Merged. The mod has been added to the database.'
+              body: message
             });
 
             await github.rest.issues.update({
