@@ -1,0 +1,70 @@
+name: Dispute Entry
+description: Request removal or correction of a database entry
+title: "[Dispute] "
+labels: ["dispute", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Dispute a Database Entry
+
+        Use this form if you believe an entry should be removed or corrected.
+
+        **Common reasons:**
+        - The mod author has fixed the tagging on Modrinth/CurseForge
+        - The database entry contains incorrect information
+        - You are the mod author and disagree with the assessment
+
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod Name
+      description: The name of the mod as it appears in the database
+      placeholder: Sodium
+    validations:
+      required: true
+
+  - type: input
+    id: modrinth-id
+    attributes:
+      label: Modrinth ID
+      description: The Modrinth project slug or ID (if applicable)
+      placeholder: sodium
+
+  - type: input
+    id: curseforge-id
+    attributes:
+      label: CurseForge ID
+      description: The CurseForge project ID (if applicable)
+      placeholder: "394468"
+
+  - type: dropdown
+    id: dispute-type
+    attributes:
+      label: Reason for Dispute
+      options:
+        - Tags have been fixed by the mod author
+        - The database entry is incorrect
+        - I am the mod author and disagree
+        - Other (explain below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: Please provide details supporting your dispute
+      placeholder: |
+        The mod author updated the environment tags in version 1.2.3.
+
+        You can verify this on the Modrinth/CurseForge project page.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: mod-author
+    attributes:
+      label: Mod Author Verification
+      options:
+        - label: I am the author of this mod

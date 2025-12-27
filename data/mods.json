@@ -1,0 +1,305 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-12-27T05:06:01.451Z",
+  "mods": [
+    {
+      "name": "Sodium",
+      "modrinth_id": "sodium",
+      "curseforge_id": 394468,
+      "loaders": [
+        "fabric",
+        "neoforge"
+      ],
+      "notes": "Sodium is a rendering optimization mod that only affects the client. Installing on a server has no effect and may cause issues.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Iris Shaders",
+      "modrinth_id": "iris",
+      "curseforge_id": 455508,
+      "loaders": [
+        "fabric",
+        "neoforge",
+        "quilt"
+      ],
+      "notes": "Iris is a shader mod that has no server-side component. It should never be installed on servers.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Oculus",
+      "modrinth_id": "oculus",
+      "curseforge_id": 581495,
+      "loaders": [
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Oculus is the Forge port of Iris shaders. Like Iris, it has no server-side functionality.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "BetterF3",
+      "modrinth_id": "BetterF3",
+      "curseforge_id": 401648,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge",
+        "quilt"
+      ],
+      "notes": "BetterF3 modifies the F3 debug screen display. This is purely a client-side visual modification.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Entity Culling",
+      "modrinth_id": "entityculling",
+      "curseforge_id": 448233,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Entity Culling optimizes client-side rendering by not rendering entities that are not visible. Has no server component.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Xaero's Minimap",
+      "modrinth_id": "Xaeros_Minimap",
+      "curseforge_id": 263420,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Xaero's Minimap is a client-side minimap mod. While it can display other players, it does this client-side.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Xaero's World Map",
+      "modrinth_id": "XaerosWorldMap",
+      "curseforge_id": 317780,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Xaero's World Map is a client-side world map mod with no server-side functionality.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "FancyMenu",
+      "modrinth_id": "fancymenu",
+      "curseforge_id": 367706,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "FancyMenu customizes Minecraft menus. This is purely a client-side visual modification.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Roughly Enough Items (REI)",
+      "modrinth_id": "roughly-enough-items",
+      "curseforge_id": 310111,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "REI is a recipe viewing mod. While it can have optional server features, it primarily runs client-side.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "EMI",
+      "modrinth_id": "emi",
+      "curseforge_id": 580555,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge",
+        "quilt"
+      ],
+      "notes": "EMI (Emancipated Mod Index) is a recipe viewer that runs entirely client-side.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Immediately Fast",
+      "modrinth_id": "ImmediatelyFast",
+      "curseforge_id": 686911,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "ImmediatelyFast optimizes immediate mode rendering on the client. No server functionality.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Mouse Tweaks",
+      "modrinth_id": "MouseTweaks",
+      "curseforge_id": 60089,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Mouse Tweaks enhances inventory management with mouse controls. Purely client-side.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Controlling",
+      "modrinth_id": "controlling",
+      "curseforge_id": 250398,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Controlling adds search functionality to the controls menu. Client-side only.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Presence Footsteps",
+      "modrinth_id": "PresenceFootsteps",
+      "curseforge_id": 350928,
+      "loaders": [
+        "fabric",
+        "quilt"
+      ],
+      "notes": "Presence Footsteps adds realistic footstep sounds. Audio-only, client-side mod.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "AppleSkin",
+      "modrinth_id": "appleskin",
+      "curseforge_id": 248787,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "AppleSkin shows food saturation and hunger restoration values. Client-side HUD mod.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Not Enough Animations",
+      "modrinth_id": "notenoughanimations",
+      "curseforge_id": 433760,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Not Enough Animations adds first-person animations. Visual-only, client-side.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "CraftPresence",
+      "modrinth_id": "craftpresence",
+      "curseforge_id": 297038,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge",
+        "quilt"
+      ],
+      "notes": "CraftPresence displays Minecraft activity on Discord. Requires Discord client, so server installation is meaningless.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Drippyloadingscreen",
+      "modrinth_id": "drippyloadingscreen",
+      "curseforge_id": 413131,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Drippyloadingscreen customizes the loading screen. Client-side visual mod only.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Ambient Sounds",
+      "modrinth_id": "AmbientSounds",
+      "curseforge_id": 254284,
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Ambient Sounds adds environmental audio. Audio is processed client-side.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    },
+    {
+      "name": "Continuity",
+      "modrinth_id": "continuity",
+      "curseforge_id": 531351,
+      "loaders": [
+        "fabric",
+        "quilt"
+      ],
+      "notes": "Continuity provides connected textures. This is a client-side visual feature.",
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      }
+    }
+  ]
+}

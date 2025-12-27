@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/pyrohost/bad-mod-tags/schema.json",
+  "title": "Bad Mod Tags Database",
+  "description": "Crowdsourced database of Minecraft mods with incorrect client/server environment tags",
+  "type": "object",
+  "required": ["version", "updated", "mods"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp (ISO 8601)"
+    },
+    "mods": {
+      "type": "array",
+      "description": "List of mods with incorrect tags",
+      "items": { "$ref": "#/$defs/mod" }
+    }
+  },
+  "$defs": {
+    "side": {
+      "description": "Environment compatibility tag (matches Modrinth's system)",
+      "enum": ["required", "optional", "unsupported"]
+    },
+    "mod": {
+      "type": "object",
+      "description": "A mod entry with correct environment tags",
+      "required": ["name", "correct_tags"],
+      "anyOf": [
+        { "required": ["modrinth_id"] },
+        { "required": ["curseforge_id"] }
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable mod name",
+          "minLength": 1
+        },
+        "modrinth_id": {
+          "type": "string",
+          "description": "Modrinth project ID or slug",
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "curseforge_id": {
+          "type": "integer",
+          "description": "CurseForge project ID",
+          "minimum": 1
+        },
+        "correct_tags": {
+          "type": "object",
+          "description": "The correct environment tags for this mod",
+          "required": ["client", "server"],
+          "properties": {
+            "client": {
+              "$ref": "#/$defs/side",
+              "description": "Correct client-side tag"
+            },
+            "server": {
+              "$ref": "#/$defs/side",
+              "description": "Correct server-side tag"
+            }
+          },
+          "additionalProperties": false
+        },
+        "loaders": {
+          "type": "array",
+          "description": "Mod loaders this applies to",
+          "items": {
+            "enum": ["fabric", "forge", "neoforge", "quilt"]
+          }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional context or explanation"
+        },
+        "reported_by": {
+          "type": "string",
+          "description": "GitHub username of the reporter"
+        },
+        "reported_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date reported (YYYY-MM-DD)"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

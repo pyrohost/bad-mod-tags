@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: View Database
+    url: https://pyrohost.github.io/bad-mod-tags/api/v1/mods.json
+    about: Browse the current database of incorrectly tagged mods
+  - name: API Documentation
+    url: https://github.com/pyrohost/bad-mod-tags#api
+    about: Learn how to use the Bad Mod Tags API

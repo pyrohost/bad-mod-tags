@@ -1,0 +1,92 @@
+name: Report Incorrectly Tagged Mod
+description: Report a Minecraft mod with incorrect client/server environment tags
+title: "[Report] "
+labels: ["mod-report", "needs-verification"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Report an Incorrectly Tagged Mod
+
+        Help improve the Minecraft modding ecosystem by reporting mods with wrong client/server tags.
+
+        > **Tip:** You can find the Modrinth slug in the URL (e.g., `modrinth.com/mod/sodium` → `sodium`)
+        > and the CurseForge ID on the project page under "Project ID".
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      description: Please verify the following
+      options:
+        - label: I have [searched existing issues](https://github.com/pyrohost/bad-mod-tags/issues) and this mod hasn't been reported
+          required: true
+        - label: I will provide at least one platform ID (Modrinth or CurseForge)
+          required: true
+
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod Name
+      description: The exact name of the mod as shown on Modrinth/CurseForge
+      placeholder: Sodium
+    validations:
+      required: true
+
+  - type: input
+    id: modrinth-id
+    attributes:
+      label: Modrinth ID
+      description: The project slug or ID from the Modrinth URL
+      placeholder: sodium
+
+  - type: input
+    id: curseforge-id
+    attributes:
+      label: CurseForge ID
+      description: The numeric project ID from CurseForge
+      placeholder: "394468"
+
+  - type: dropdown
+    id: correct-client-tag
+    attributes:
+      label: Correct Client Tag
+      description: What should the client-side environment tag be?
+      options:
+        - Required - Must be installed on client
+        - Optional - Works on client but not required
+        - Unsupported - Should NOT be installed on client
+    validations:
+      required: true
+
+  - type: dropdown
+    id: correct-server-tag
+    attributes:
+      label: Correct Server Tag
+      description: What should the server-side environment tag be?
+      options:
+        - Required - Must be installed on server
+        - Optional - Works on server but not required
+        - Unsupported - Should NOT be installed on server
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: loaders
+    attributes:
+      label: Mod Loaders
+      description: Select all mod loaders this applies to
+      options:
+        - label: Fabric
+        - label: Forge
+        - label: NeoForge
+        - label: Quilt
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Why is the current tagging incorrect?
+      description: Briefly explain why the mod's current tags are wrong
+      placeholder: |
+        Example: This is a rendering optimization mod that only affects the client.
+        It has no server-side code and should not be installed on servers.
