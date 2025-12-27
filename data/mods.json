@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2025-12-27T05:06:01.451Z",
+  "updated": "2025-12-27T06:07:30.245Z",
   "mods": [
     {
       "name": "Sodium",
@@ -300,6 +300,23 @@
         "client": "required",
         "server": "unsupported"
       }
+    },
+    {
+      "name": "Fog",
+      "modrinth_id": "fog",
+      "curseforge_id": 815438,
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "Pure visual mod that enhances fog rendering. No server-side component - fog is rendered entirely client-side.",
+      "reported_by": "ChecksumDev",
+      "reported_date": "2025-12-27"
     }
   ]
 }
