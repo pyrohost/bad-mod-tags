@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2025-12-27T06:07:30.245Z",
+  "updated": "2025-12-27T06:22:59.715Z",
   "mods": [
     {
       "name": "Sodium",
@@ -315,6 +315,24 @@
         "neoforge"
       ],
       "notes": "Pure visual mod that enhances fog rendering. No server-side component - fog is rendered entirely client-side.",
+      "reported_by": "ChecksumDev",
+      "reported_date": "2025-12-27"
+    },
+    {
+      "name": "Sound Physics Remastered",
+      "modrinth_id": "sound-physics-remastered",
+      "curseforge_id": 535489,
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge",
+        "quilt"
+      ],
+      "notes": "Sound Physics provides realistic audio effects (reverb, attenuation, absorption). All audio processing is client-side only.",
       "reported_by": "ChecksumDev",
       "reported_date": "2025-12-27"
     }
