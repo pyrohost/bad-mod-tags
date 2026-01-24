@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2025-12-27T06:34:38.670Z",
+  "updated": "2026-01-24T21:10:06.198Z",
   "mods": [
     {
       "name": "Sodium",
@@ -335,6 +335,23 @@
       "notes": "Sound Physics provides realistic audio effects (reverb, attenuation, absorption). All audio processing is client-side only.",
       "reported_by": "ChecksumDev",
       "reported_date": "2025-12-27"
+    },
+    {
+      "name": "Drippy Loading Screen",
+      "modrinth_id": "drippy-loading-screen",
+      "curseforge_id": 511770,
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "loaders": [
+        "fabric",
+        "forge",
+        "neoforge"
+      ],
+      "notes": "The server unfortunately does not have a loading screen to stare at while I bash my head into the keyboard.",
+      "reported_by": "ChecksumDev",
+      "reported_date": "2026-01-24"
     }
   ]
 }
