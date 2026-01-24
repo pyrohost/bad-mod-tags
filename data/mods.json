@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-01-24T21:10:06.198Z",
+  "updated": "2026-01-24T21:19:31.118Z",
   "mods": [
     {
       "name": "Sodium",
@@ -351,6 +351,20 @@
       ],
       "notes": "The server unfortunately does not have a loading screen to stare at while I bash my head into the keyboard.",
       "reported_by": "ChecksumDev",
+      "reported_date": "2026-01-24"
+    },
+    {
+      "name": "Blur",
+      "curseforge_id": 823106,
+      "correct_tags": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "loaders": [
+        "forge",
+        "neoforge"
+      ],
+      "reported_by": "evastarlight",
       "reported_date": "2026-01-24"
     }
   ]
